@@ -1,0 +1,68 @@
+body{
+    background-color: rgb(241, 241, 91);
+    background-image: url(productos.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}    
+
+.boton{
+    border: none;
+    outline: none;
+    background:linear-gradient(30deg, rgb(241, 241, 91), white );
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.7) 0px 0px 20px;
+    font-size: x-large;
+    font-weight:bolder;
+    margin: auto;
+    
+    
+
+}
+.boton:hover{
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 20px;
+}
+
+.tabla{
+    
+    background:linear-gradient(30deg, rgb(241, 241, 91), white );    
+    
+      
+    
+}
+
+.scroll{
+    
+    overflow:scroll;
+}
+
+.tabla1{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    flex-direction: column;
+    
+}
+.navbar {
+    display: flex;
+    justify-content:space-evenly;
+    padding: 50px;
+    box-shadow: 1px 1px gray;
+    margin-bottom: 50px;
+  }
+  
+  .navbar > li {
+    display: flex;
+    
+  }
+
+  .buscar {
+    background-color: white;
+    border: 1px solid gray;
+    padding: 4px;
+    border-radius: 8px;
+    width: 300px;
+    display: flex;
+    justify-content:space-evenly;
+  }
