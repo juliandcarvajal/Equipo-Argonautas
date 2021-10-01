@@ -27,15 +27,11 @@ body{
 .tabla{
     
     background:linear-gradient(30deg, rgb(241, 241, 91), white );    
-    
-      
+
     
 }
 
-.scroll{
-    
-    overflow:scroll;
-}
+
 
 .tabla1{
     display: flex;
