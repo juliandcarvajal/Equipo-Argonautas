@@ -1,5 +1,4 @@
-
-import '../styles/RegistroProductos.css';
+import '../styles/RegistroProductos.css'
 
 function RegistroProductos(){
     return(   
@@ -31,10 +30,10 @@ function RegistroProductos(){
                     </div>
                     <div className="row">
                         <div className="col-md-6">
-                            <button type="button" class="btn btn-primary" onclick="Registrar()" id="registrar">Registrar producto</button>
+                            <button className ="button1" type="button" class="btn btn-primary" onclick="Registrar()" id="registrar">Registrar producto</button>
                         </div>
                         <div className="col-md-6">
-                            <button type="button" class="btn btn-primary" onclick="salir()" id="salirr">Salir</button>
+                            <button className ="button1"  type="button" class="btn btn-primary" onclick="salir()" id="salirr">Salir</button>
                         </div>
                     </div>
                 </form>

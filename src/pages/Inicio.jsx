@@ -4,6 +4,7 @@ import comedero from '../media/comedero.jpg';
 import cama from '../media/cama.jpg';
 import rascador from '../media/rascador.jpg';
 import { Link } from 'react-router-dom';
+import '../styles/Inicio.css';
 
 
 
@@ -24,7 +25,7 @@ return(
                 </ul>
             </nav>
         </div>
-    </header><body>
+    </header><body className="body2">
             <div className="titulo">
                 <h1>
                     Bienvenidos

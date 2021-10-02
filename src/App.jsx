@@ -1,9 +1,12 @@
-import logo from './logo.svg';
-import Inicio from './pages/Inicio';
+
+
 import RegistroProductos from './pages/RegistroProductos';
+import Inicio from './pages/Inicio';
+import GestorProductos from './pages/Gestorproductos';
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import './styles/Inicio.css';
+
 
 function App() {
   return (
@@ -13,6 +16,10 @@ function App() {
 
        <Route path ='/RegistroProductos'> 
            <RegistroProductos/>
+         </Route>
+
+         <Route path ='/GestorProductos'> 
+           <GestorProductos/>
          </Route>
          
          <Route path ='/'> 
