@@ -6,6 +6,7 @@ import rascador from '../media/rascador.jpg';
 import { Link } from 'react-router-dom';
 
 
+
 function inicio(){
 return(
 
