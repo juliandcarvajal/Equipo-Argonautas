@@ -1,16 +1,7 @@
+import '../styles/Gestorproductos.css';
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Gestorproductos.css">
-    <link rel="shortcut icon" href="./lazy.jpg" type="image/x-icon" />
-    <title>Productos</title>
-    <script src="https://kit.fontawesome.com/d4cd33a1a3.js" crossorigin="anonymous"></script>
-</head>
+function Gestorproductos(){
+   return(
 <body class="body">
 <header>
 
@@ -19,7 +10,7 @@
 
     <li>
         <div class="buscar">
-        <input type="text" placeholder="Buscar un producto">
+        <input type="text" placeholder="Buscar un producto"/>
         <i class="fas fa-search botonGenerico iconoBusqueda"></i>
         </div>
         </li>
@@ -57,7 +48,7 @@
     <th ><strong>ID </strong></th>
       <th><strong>Descripción</strong></th>
       <th ><strong>Valor Unitario</strong></th>
-      <th  ><strong>Estado </tstrong></th>
+      <th  ><strong>Estado </strong></th>
 
      </tr>
 
@@ -118,4 +109,7 @@
 
     
 </body>
-</html>
+);
+}
+
+export default Gestorproductos;
