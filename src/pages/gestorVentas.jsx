@@ -13,24 +13,14 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID_Producto: 1, des_Producto: "Naruto", Cantidad: 1, Precio_Unitario:2.5, Precio_Total:150},
-  { ID_Producto: 2, des_Producto: "Goku", Cantidad: 1, Precio_Unitario:1.4, Precio_Total:150},
-  { ID_Producto: 3, des_Producto: "Kenshin Himura", Cantidad: 1,Precio_Unitario:2.5, Precio_Total:150 },
-  { ID_Producto: 4, des_Producto: "Monkey D. Luffy", Cantidad: 1,Precio_Unitario:2.4, Precio_Total:150 },
-  { ID_Producto: 5, des_Producto: "Edward Elric", Cantidad: 1,Precio_Unitario:2.3, Precio_Total:150},
-  { ID_Producto: 6, des_Producto: "Seto Kaiba", Cantidad: 1 ,Precio_Unitario:1.2, Precio_Total:150},
-  { ID_Producto: 7, des_Producto: "Seto Kaiba", Cantidad: 1 ,Precio_Unitario:1.7, Precio_Total:150},
+  { ID_Producto: 1, des_Producto: "Naruto", Cantidad: 1, Precio_Unitario:2.5, Precio_Total:150, vendedor:"Dario"},
+
 ];
 
+
 const data2 = [
-    { ID_Producto: 1, des_Producto: "Naruto", Cantidad: 1, Precio_Unitario:2.5},
-    { ID_Producto: 2, des_Producto: "Goku", Cantidad: 1, Precio_Unitario:1.4},
-    { ID_Producto: 3, des_Producto: "Kenshin Himura", Cantidad: 1,Precio_Unitario:2.5 },
-    { ID_Producto: 4, des_Producto: "Monkey D. Luffy", Cantidad: 1,Precio_Unitario:2.4 },
-    { ID_Producto: 5, des_Producto: "Edward Elric", Cantidad: 1,Precio_Unitario:2.3},
-    { ID_Producto: 6, des_Producto: "Seto Kaiba", Cantidad: 1 ,Precio_Unitario:1.2},
-    { ID_Producto: 7, des_Producto: "Seto Kaiba", Cantidad: 1 ,Precio_Unitario:1.7},
-  ];
+  { ID_Venta: 1, Valor_Total_Venta: 0, Fecha_Venta: "25 agosto", ID_Cliente: 456, nombre_Cliente: "Julian", vendedor: "Dario"},
+];
   
 
 
@@ -44,6 +34,9 @@ class GestorVentas extends React.Component {
       des_Producto: "",
       Cantidad: "",
       Precio_Unitario:"",
+      Precio_Total:"",
+      vendedor: "",
+
     
     },
   };
@@ -122,11 +115,13 @@ class GestorVentas extends React.Component {
   }
 
   insertar2= ()=>{
-    var valorNuevo= {...this.state.form};
-    
-    var lista= this.state.data;
-    lista.push(valorNuevo);
-    this.setState({ modalInsertar: false, data: lista });
+
+    var valorNuevo2 ={...this.state.form};
+
+    var lista2=this.state.data;
+    lista2.push(valorNuevo2);
+    this.setState({ modalInsertar2: false, data: lista2 });  
+
   }
 
   handleChange = (e) => {
@@ -212,7 +207,8 @@ class GestorVentas extends React.Component {
                 </tr>     
                 <tr>
                     <th>Vendedor:</th>
-                    <th>{}</th>                   
+{this.state.data.map((dato) => (
+                    <th>{dato.vendedor}</th> ))}                  
                 </tr>            
             </tfoot>
 

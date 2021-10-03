@@ -4,12 +4,15 @@ import RegistroProductos from './pages/RegistroProductos';
 import Inicio from './pages/Inicio';
 import GestorProductos from './pages/Gestorproductos';
 import GestorVentas from './pages/gestorVentas';
+import Prueba from './pages/prueba';
+
 
 
 
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 
 
@@ -31,7 +34,9 @@ function App() {
           <GestorVentas/>
         </Route>
 
-
+        <Route path = '/prueba'>
+          <Prueba/>
+        </Route>
 
 
 
