@@ -1,0 +1,16 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.container {
+    margin: 7%;
+    background-color: #FFFFFF80;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}    
+body{
+    background-image:url(../media/productos.jpg);
+    background-size: 120%;
+}
