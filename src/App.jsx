@@ -3,6 +3,11 @@
 import RegistroProductos from './pages/RegistroProductos';
 import Inicio from './pages/Inicio';
 import GestorProductos from './pages/Gestorproductos';
+import GestorVentas from './pages/gestorVentas';
+
+
+
+
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -21,7 +26,16 @@ function App() {
          <Route path ='/GestorProductos'> 
            <GestorProductos/>
          </Route>
-         
+        
+        <Route path = '/GestorVentas'>
+          <GestorVentas/>
+        </Route>
+
+
+
+
+
+
          <Route path ='/'> 
            <Inicio/>
          </Route>
