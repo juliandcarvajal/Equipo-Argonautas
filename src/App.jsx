@@ -1,8 +1,9 @@
-import RegistroProductos from './pages/RegistroProductos';
+
 import Inicio from './pages/Inicio';
 import GestorProductos from './pages/Gestorproductos';
 import GestorUsuarios from './pages/GestorUsuarios';
 import GestorVentas from './pages/gestorVentas';
+
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -23,14 +24,10 @@ function App() {
            <GestorVentas/>
         </Route>
 
-       <Route path ='/RegistroProductos'> 
-           <RegistroProductos/>
-         </Route>
-
          <Route path ='/GestorProductos'> 
            <GestorProductos/>
          </Route>
-         
+
          <Route path ='/'> 
            <Inicio/>
          </Route>
