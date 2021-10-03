@@ -15,12 +15,12 @@ return(
         <div className="nombre">LazyStore</div>
         <div className="encabezado">
             <nav>
-                <ul> <Link to='/RegistroProductos'>
+                <ul> 
                     <li><a href="#">Iniciar sesión</a></li>
-                    </Link>
-                    <Link to='/RegistroProductos'>
+                    
+                   
                     <li><a href="#">Registrarse</a></li>
-                    </Link>
+                    
                     <li><a href="#">Inicio</a></li>
                 </ul>
             </nav>

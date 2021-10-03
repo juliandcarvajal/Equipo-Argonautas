@@ -23,10 +23,7 @@ function App() {
            <GestorVentas/>
         </Route>
 
-       <Route path ='/RegistroProductos'> 
-           <RegistroProductos/>
-         </Route>
-
+       
          <Route path ='/GestorProductos'> 
            <GestorProductos/>
          </Route>
