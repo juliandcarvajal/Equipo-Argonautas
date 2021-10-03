@@ -1,25 +1,17 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter,
+} from "reactstrap";
 import '../styles/usuarios.css';
 
-import {
-  Table,
-  Button,
-  Container,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  FormGroup,
-  ModalFooter,
-} from "reactstrap";
-
 const data = [
-  { ID: 1, descripción: "Naruto", Valor_unitario: "Naruto", Estado:"A"},
-  { ID: 2, descripción: "Goku", Valor_unitario: "Dragon Ball", Estado:"A"},
-  { ID: 3, descripción: "Kenshin Himura", Valor_unitario: "Rurouni Kenshin",Estado:"A" },
-  { ID: 4, descripción: "Monkey D. Luffy", Valor_unitario: "One Piece",Estado:"A" },
-  { ID: 5, descripción: "Edward Elric", Valor_unitario: "Fullmetal Alchemist: Brotherhood",Estado:"A"},
-  { ID: 6, descripción: "Seto Kaiba", Valor_unitario: "Yu-Gi-Oh!" ,Estado:"A"},
+  { ID: 1, Nombre: "Angelica", Rol: "Administrador", Estado:"Autorizado"},
+  { ID: 2, Nombre: "Julian", Rol: "Vendedor", Estado:"Pendiente"},
+  { ID: 3, Nombre: "Larry", Rol: "Vendedor",Estado:"Autorizado" },
+  { ID: 4, Nombre: "Alejandro", Rol: "Vendedor",Estado:"Autorizado" },
+  { ID: 5, Nombre: "Daniela", Rol: "Vendedor",Estado:"Pendiente"},
+  
 ];
 
 class App extends React.Component {
@@ -29,8 +21,8 @@ class App extends React.Component {
     modalInsertar: false,
     form: {
       ID: "",
-      Descripción: "",
-      Valor_unitario: "",
+      Nombre: "",
+      Rol: "",
       Estado:"",
     },
   };
@@ -62,8 +54,8 @@ class App extends React.Component {
     arreglo.map((registro) => {
       if (dato.ID == registro.ID) {
          arreglo[contador].ID = dato.ID;
-        arreglo[contador].descripción = dato.descripción;
-        arreglo[contador].Valor_unitario = dato.Valor_unitario;
+        arreglo[contador].Nombre = dato.Nombre;
+        arreglo[contador].Rol = dato.Rol;
         arreglo[contador].Estado = dato.Estado;
       }
       contador++;
@@ -72,7 +64,7 @@ class App extends React.Component {
   };
 
   eliminar = (dato) => {
-    var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento "+dato.ID);
+    var opcion = window.confirm("Estás Seguro que deseas Eliminar el usuario "+dato.ID);
     if (opcion == true) {
       var contador = 0;
       var arreglo = this.state.data;
@@ -94,6 +86,10 @@ class App extends React.Component {
     this.setState({ modalInsertar: false, data: lista });
   }
 
+  filtrar=()=>{
+    
+  }
+
   handleChange = (e) => {
     this.setState({
       form: {
@@ -109,15 +105,16 @@ class App extends React.Component {
       <>
         <Container >
         <br />
-          <Button color="success"  onClick={()=>this.mostrarModalInsertar()}>Crear</Button>
+          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Crear</Button>
           <br />
+        
           <br />
           <Table>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Descripción</th>
-                <th>Valor Unitario</th>
+                <th>Nombre</th>
+                <th>Rol</th>
                 <th>Estado</th>
                 <th>Acción</th>
               </tr>
@@ -127,8 +124,8 @@ class App extends React.Component {
               {this.state.data.map((dato) => (
                 <tr key={dato.ID}>
                   <td>{dato.ID}</td>
-                  <td>{dato.descripción}</td>
-                  <td>{dato.Valor_unitario}</td>
+                  <td>{dato.Nombre}</td>
+                  <td>{dato.Rol}</td>
                   <td>{dato.Estado}</td>
                   <td>
                     <Button
@@ -168,28 +165,27 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                Descripción: 
+                Nombre: 
               </label>
               <input
                 className="form-control"
-                name="descripción"
+                name="Nombre"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.descripción}
+                value={this.state.form.Nombre}
               />
             </FormGroup>
             
             <FormGroup>
               <label>
-                Valor unitario: 
+                Rol: 
               </label>
-              <input
-                className="form-control"
-                name="Valor_unitario"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.form.Valor_unitario}
-              />
+              <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
+               <option selected value="0">Elige una opcion</option>
+               <option>Administrador</option> 
+                <option>Vendedor</option> 
+                
+              </select> 
             </FormGroup>
 
             <FormGroup>
@@ -198,10 +194,10 @@ class App extends React.Component {
               </label>
               <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
                <option selected value="0">Elige una opcion</option>
-               <option>Disponible</option> 
-                <option>No Disponible</option> 
-                
-              </select>
+               <option>Autorizado</option> 
+                <option>No Autorizado</option> 
+                <option>Pendiente</option> 
+              </select>  
             </FormGroup>
             
           </ModalBody>
@@ -226,7 +222,7 @@ class App extends React.Component {
 
         <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-           <div><h3>Insertar descripción</h3></div>
+           <div><h3>Insertar Nombre</h3></div>
           </ModalHeader>
 
           <ModalBody>
@@ -245,11 +241,11 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                descripción: 
+                Nombre: 
               </label>
               <input
                 className="form-control"
-                name="descripción"
+                name="Nombre"
                 type="text"
                 onChange={this.handleChange}
               />
@@ -257,11 +253,11 @@ class App extends React.Component {
             
             <FormGroup>
               <label>
-                Valor_unitario: 
+                Rol: 
               </label>
               <input
                 className="form-control"
-                name="Valor_unitario"
+                name="Rol"
                 type="text"
                 onChange={this.handleChange}
               />
