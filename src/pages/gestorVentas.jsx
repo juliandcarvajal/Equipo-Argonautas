@@ -22,6 +22,8 @@ const data = [
   { ID_Producto: 7, des_Producto: "Seto Kaiba", Cantidad: 1 ,Precio_Unitario:1.7},
 ];
 
+
+
 class GestorVentas extends React.Component {
   state = {
     data: data,
@@ -113,7 +115,11 @@ class GestorVentas extends React.Component {
       <>
         <Container >
         <br />
+        <ul>
           <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Ingresar Producto</Button>
+          <> </>
+          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Información Venta</Button>
+          </ul>
           <br />
 
           <br />
