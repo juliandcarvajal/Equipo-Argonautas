@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID_Producto: 1, des_Producto: "Naruto", Cantidad: 1, Precio_Unitario:2.5, Precio_Total:150, vendedor:"Dario"},
+  { ID_Producto: 1, des_Producto: "Producto1", Cantidad: 1, Precio_Unitario:2.5, Precio_Total:150, vendedor:"Dario"},
 
 ];
 
@@ -107,6 +107,9 @@ class GestorVentas extends React.Component {
   };
 
   insertar= ()=>{
+
+ 
+
     var valorNuevo= {...this.state.form};
     
     var lista= this.state.data;
