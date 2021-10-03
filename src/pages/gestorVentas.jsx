@@ -14,13 +14,12 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID: 1321312, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"";Cliente:"";Vendedor:"";},
-  { ID: 2232, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"";Cliente:"";Vendedor:"";},
-  { ID: 144523, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"";Cliente:"";Vendedor:"";},
- 
-];
+  { ID: 1321312, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
+  { ID: 2232, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
+  { ID: 144523, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
+ ];
 
-class App extends React.Component {
+class Ap extends React.Component {
   state = {
     data: data,
     modalActualizar: false,
@@ -132,6 +131,7 @@ class App extends React.Component {
                 <th> # Documento</th>
                 <th>Cliente</th>
                 <th>Vendedor</th>
+                <th>Acción</th>
               </tr>
             </thead>
 
@@ -155,7 +155,7 @@ class App extends React.Component {
                       Editar
                     </Button>{" "}
                     <Button color="secondary" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
-                  </td>
+                </td>
                 </tr>
               ))}
             </tbody>
@@ -472,5 +472,8 @@ class App extends React.Component {
       </>
     );
   }
+
+
+  
 }
-export default App;
+export default Ap;
