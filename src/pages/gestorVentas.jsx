@@ -45,6 +45,7 @@ class GestorVentas extends React.Component {
     });
   };
 
+
   cerrarModalActualizar = () => {
     this.setState({ modalActualizar: false });
   };
@@ -52,6 +53,12 @@ class GestorVentas extends React.Component {
   mostrarModalInsertar = () => {
     this.setState({
       modalInsertar: true,
+    });
+  };
+
+  mostrarModalInsertar2 = () => {
+    this.setState({
+      modalInsertar2: true,
     });
   };
 
@@ -118,7 +125,7 @@ class GestorVentas extends React.Component {
         <ul>
           <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Ingresar Producto</Button>
           <> </>
-          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Información Venta</Button>
+          <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Información Venta</Button>
           </ul>
           <br />
 
@@ -375,6 +382,110 @@ class GestorVentas extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
+
+
+        <Modal isOpen={this.state.modalInsertar2}>
+          <ModalHeader>
+           <div><h3>Datos Venta</h3></div>
+          </ModalHeader>
+
+          <ModalBody>
+            <FormGroup>
+              <label>
+                ID Venta: 
+              </label>
+              
+              <input
+                className="form-control"
+                name="ID_Venta"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            
+            <FormGroup>
+              <label>
+                Fecha de la venta: 
+              </label>
+              <input
+                className="form-control"
+                name="fecha_Venta"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            
+            <FormGroup>
+              <label>
+                Identificación del Cliente: 
+              </label>
+              <input
+                className="form-control"
+                name="ID_Cliente"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+                Nombre del Cliente: 
+              </label>
+              <input
+                className="form-control"
+                name="nombre_Cliente"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+                Vendedor: 
+              </label>
+              <input
+                className="form-control"
+                name="vendedor"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+                Valor Total Venta: 
+              </label>
+              <input
+                className="form-control"
+                name="total_Venta"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+
+
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              color="primary"
+              onClick={() => this.insertar()}
+            >
+              Insertar
+            </Button>
+            <Button
+              className="btn btn-danger"
+              onClick={() => this.cerrarModalInsertar()}
+            >
+              Cancelar
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+
+
+
       </>
     );
   }
