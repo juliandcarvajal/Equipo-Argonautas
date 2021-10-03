@@ -1,4 +1,4 @@
-import RegistroProductos from './pages/RegistroProductos';
+
 import Inicio from './pages/Inicio';
 import GestorProductos from './pages/Gestorproductos';
 import GestorUsuarios from './pages/GestorUsuarios';
@@ -23,10 +23,6 @@ function App() {
         <Route path ='/GestorVentas'> 
            <GestorVentas/>
         </Route>
-
-       <Route path ='/RegistroProductos'> 
-           <RegistroProductos/>
-         </Route>
 
          <Route path ='/GestorProductos'> 
            <GestorProductos/>
