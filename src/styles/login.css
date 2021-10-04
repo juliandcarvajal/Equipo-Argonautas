@@ -3,7 +3,7 @@
     padding: 0px;
     margin: 0px;
 }
-div{
+.login{
     display: flex;
     width: 100%;
     height: 100vh;
@@ -29,7 +29,7 @@ form{
 
 
 
-h1{
+.iniciosesion{
     font-size: 40px;
     color: #000;
 

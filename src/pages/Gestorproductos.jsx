@@ -14,12 +14,12 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID: 1, descripción: "Naruto", Valor_unitario: "Naruto", Estado:"A"},
-  { ID: 2, descripción: "Goku", Valor_unitario: "Dragon Ball", Estado:"A"},
-  { ID: 3, descripción: "Kenshin Himura", Valor_unitario: "Rurouni Kenshin",Estado:"A" },
-  { ID: 4, descripción: "Monkey D. Luffy", Valor_unitario: "One Piece",Estado:"A" },
-  { ID: 5, descripción: "Edward Elric", Valor_unitario: "Fullmetal Alchemist: Brotherhood",Estado:"A"},
-  { ID: 6, descripción: "Seto Kaiba", Valor_unitario: "Yu-Gi-Oh!" ,Estado:"A"},
+  { ID: 1, descripción: "Collar de perro", Valor_unitario: "$ 10.000", Estado:"Disponible"},
+  { ID: 2, descripción: "Gimnasio de gato pequeño", Valor_unitario: "$80.000", Estado:"Disponible"},
+  { ID: 3, descripción: "Comedero de perros", Valor_unitario: "$30.000",Estado:"Dispoible" },
+  { ID: 4, descripción: "Gimnasio  de gato grande", Valor_unitario: "$130.000",Estado:"No disponible" },
+  { ID: 5, descripción: "Galletas artesanales de perro ", Valor_unitario: "$6.000",Estado:"Disponible"},
+  { ID: 6, descripción: "Cama de perro", Valor_unitario: "$35.000" ,Estado:"Disponible"},
 ];
 
 class App extends React.Component {

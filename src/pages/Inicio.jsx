@@ -11,21 +11,22 @@ import '../styles/Inicio.css';
 function inicio(){
 return(
 
-    <><header>
+    <><body className="body2">
+        <header>
         <div className="nombre">LazyStore</div>
         <div className="encabezado">
             <nav>
-                <ul> <Link to='/RegistroProductos'>
+                <ul> 
                     <li><a href="#">Iniciar sesión</a></li>
-                    </Link>
-                    <Link to='/RegistroProductos'>
+                    
+                   
                     <li><a href="#">Registrarse</a></li>
-                    </Link>
+                    
                     <li><a href="#">Inicio</a></li>
                 </ul>
             </nav>
         </div>
-    </header><body className="body2">
+    </header>
             <div className="titulo">
                 <h1>
                     Bienvenidos
