@@ -10,7 +10,7 @@ class App extends React.Component{
         return(
 
     <>
-    <div>
+    <div class="center-block">
     <Form>
         <h1 color="black">Inicio de sesion</h1>
         <br/>
