@@ -18,7 +18,7 @@ return(
                 <ul> 
                     <li><a href="#">Iniciar sesión</a></li>
                     
-                   
+                
                     <li><a href="#">Registrarse</a></li>
                     
                     <li><a href="#">Inicio</a></li>
