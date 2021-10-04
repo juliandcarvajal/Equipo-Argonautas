@@ -3,7 +3,7 @@
 import Inicio from './pages/Inicio';
 import GestorProductos from './pages/Gestorproductos';
 import GestorUsuarios from './pages/GestorUsuarios';
-import GestorVentas from './pages/gestorVentas';
+import GestorVentas from './pages/GestorVentas';
 import Navegador from './pages/Navegador';
 import Login from './pages/Login';
 
@@ -25,7 +25,7 @@ function App() {
            <GestorUsuarios/>
         </Route>
 
-        <Route path ='/gestorVentas'> 
+        <Route path ='/GestorVentas'> 
            <GestorVentas/>
         </Route>
 

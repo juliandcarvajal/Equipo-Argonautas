@@ -12,7 +12,7 @@ function navegador(){
             <Link to='/Gestorproductos'>
                 <button type='button' className="bot1">Gestor de productos</button>
             </Link>
-            <Link to='/gestorVentas'>
+            <Link to='/GestorVentas'>
                 <button type='button' className="bot2">Gestor de ventas</button>
             </Link>
             <Link to='/GestorUsuarios'>
