@@ -226,7 +226,7 @@ class App extends React.Component {
 
         <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-           <div><h3>Insertar descripción</h3></div>
+           <div><h3>Registrar producto </h3></div>
           </ModalHeader>
 
           <ModalBody>

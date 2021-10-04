@@ -30,7 +30,7 @@ class App extends React.Component{
             <br/>
             <FormGroup>
               <label>
-                Contrase;a: 
+                Contraseña: 
               </label>
               <input
                 

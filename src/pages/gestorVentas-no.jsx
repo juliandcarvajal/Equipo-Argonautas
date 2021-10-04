@@ -14,13 +14,12 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID: 1321312, Fecha: "15/01/2021", ID_Producto: "4456", Cantidad:"2",Precio_Unitario:"$2.000",Valor_Total:"$4.000",N_Documento:"11247980",Cliente:"Larry",Vendedor:"Felipe",Estado:" Entregado"},
-  { ID: 156672, Fecha: "07/03/2021", ID_Producto: "8899", Cantidad:"1",Precio_Unitario:"$5.000",Valor_Total:"$5.000",N_Documento:"11457534",Cliente:"Angelica",Vendedor:"Andres",Estado:" Cancelado"},
-  { ID: 18972, Fecha: "23/05/2021", ID_Producto: "1357", Cantidad:"1",Precio_Unitario:"$30.000",Valor_Total:"$30.000",N_Documento:"5678834",Cliente:"Julio",Vendedor:"Andres",Estado:" En proceso"},
-  
+  { ID: 1321312, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
+  { ID: 2232, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
+  { ID: 144523, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
  ];
 
-class Ap extends React.Component {
+class GestorVentas extends React.Component {
   state = {
     data: data,
     modalActualizar: false,
@@ -35,7 +34,6 @@ class Ap extends React.Component {
       N_Documento:"",
       Cliente:"",
       Vendedor:"",
-      Estado:"",
     },
   };
 
@@ -74,7 +72,6 @@ class Ap extends React.Component {
         arreglo[contador].N_Documento = dato.N_Documento;
         arreglo[contador].Cliente = dato.Cliente;
         arreglo[contador].Vendedor = dato.Vendedor;
-        arreglo[contador].Estado = dato.Estado;
       }
       contador++;
     });
@@ -134,7 +131,6 @@ class Ap extends React.Component {
                 <th> # Documento</th>
                 <th>Cliente</th>
                 <th>Vendedor</th>
-                <th>Estado</th>
                 <th>Acción</th>
               </tr>
             </thead>
@@ -151,7 +147,6 @@ class Ap extends React.Component {
                   <td>{dato.N_Documento}</td>
                   <td>{dato.Cliente}</td>
                   <td>{dato.Vendedor}</td>
-                   <td>{dato.Estado}</td>
                   <td>
                     <Button
                       color="primary"
@@ -218,13 +213,12 @@ class Ap extends React.Component {
               <label>
                 Cantidad: 
               </label>
-              <input 
-              className="form-control"
-                name="Cantidad"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.form.Cantidad} />
-
+              <select  className="form-control" name="Cantidad" value={this.state.form.Cantidad} onChange={this.handleChange}>
+               <option selected value="0">Elige una opcion</option>
+               <option>Disponible</option> 
+                <option>No Disponible</option> 
+                
+              </select>
             </FormGroup>
 
 
@@ -235,8 +229,8 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-              
-                name="Precio_Unitario"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.form.Precio_Unitario}
@@ -250,8 +244,9 @@ class Ap extends React.Component {
               </label>
             
               <input
-                className="form-control"               
-                name="Valor_Total"
+                className="form-control"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.form.Valor_Total}
@@ -260,12 +255,13 @@ class Ap extends React.Component {
 
             <FormGroup>
               <label>
-               #Documento:
+               # Documento:
               </label>
             
               <input
                 className="form-control"
-                name="Documento"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.form.N_Documento}
@@ -279,8 +275,8 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-                
-                name="Cliente"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.form.Cliente}
@@ -294,25 +290,12 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-               
-                name="Vendedor"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.form.Vendedor}
               />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Estado: 
-              </label>
-              <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
-               <option selected value="0">Elige una opcion</option>
-               <option>En proceso</option> 
-                <option>Cancelado</option> 
-                <option>Entregado</option> 
-                
-              </select>
             </FormGroup>
 
            
@@ -337,12 +320,12 @@ class Ap extends React.Component {
 
 
 
-        <Modal isOpen={this.state.modalInsertar} >
+        <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-           <div><h3>Registrar Venta</h3></div>
+           <div><h3>Insertar Fecha</h3></div>
           </ModalHeader>
 
-          <ModalBody  >
+          <ModalBody>
             <FormGroup>
               <label>
                 ID: 
@@ -399,8 +382,8 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-               
-                name="Precio_Unitario"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 
@@ -415,8 +398,8 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-               
-                name="Valor_Total"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 
@@ -430,8 +413,8 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-                
-                name="Documento"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 
@@ -445,8 +428,8 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-              
-                name="Cliente"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 
@@ -460,26 +443,14 @@ class Ap extends React.Component {
             
               <input
                 className="form-control"
-                
-                name="Vendedor"
+                readOnly
+                name="ID"
                 type="text"
                 onChange={this.handleChange}
                 
               />
             </FormGroup>
 
-            <FormGroup>
-              <label>
-                Estado: 
-              </label>
-              <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
-               <option selected value="0">Elige una opcion</option>
-               <option>En proceso</option> 
-                <option>Cancelado</option> 
-                <option>Entregado</option> 
-                
-              </select>
-            </FormGroup>
 
           </ModalBody>
 
@@ -505,4 +476,5 @@ class Ap extends React.Component {
 
   
 }
-export default Ap;
+
+export default GestorVentas;
