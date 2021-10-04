@@ -11,7 +11,8 @@ import '../styles/Inicio.css';
 function inicio(){
 return(
 
-    <><header>
+    <><body className="body2">
+        <header>
         <div className="nombre">LazyStore</div>
         <div className="encabezado">
             <nav>
@@ -25,7 +26,7 @@ return(
                 </ul>
             </nav>
         </div>
-    </header><body className="body2">
+    </header>
             <div className="titulo">
                 <h1>
                     Bienvenidos
