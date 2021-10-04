@@ -24,7 +24,7 @@
 .bot{
     margin-left: 18%;
 }
-.bot2:hover, .bot1:hover, .bot2:hover, .bot3:hover{
+.bot:hover, .bot1:hover, .bot2:hover, .bot3:hover{
     background: rgb(93, 152, 185);
     transform: scale(1.05);
     box-shadow: rgba(0, 0, 0, 0.9) 0px 0px 25px;
