@@ -10,9 +10,9 @@ class App extends React.Component{
         return(
 
     <>
-    <div>
+    <div className="login">
     <Form>
-        <h1 color="black">Inicio de sesion</h1>
+        <h1 className="iniciosesion">Inicio de sesion</h1>
         <br/>
         <br/>
         <br/>

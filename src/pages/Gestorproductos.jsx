@@ -94,6 +94,32 @@ class App extends React.Component {
     this.setState({ modalInsertar: false, data: lista });
   }
 
+  onChange=async e=>{
+    e.persist();
+    await this.setState({busqueda:e.target.value});
+    /*console.log(this.state.busqueda);
+    console.log('lista filtrada',this.state.data.filter((elemento)=>{
+      console.log("elemento",elemento);
+      return JSON.stringify(elemento).toLowerCase().includes(this.state.busqueda.toLowerCase());
+    })
+    );
+    esto era para vefiricar salida por consola*/
+    
+    this.filtrar();  /*Se llama a la funcion filtar cada que se escribe en el buscador*/
+  }
+  filtrar=()=>{
+    var search=data.filter((elemento)=>{
+      if(JSON.stringify(elemento).toLowerCase().includes(this.state.busqueda.toLowerCase())){
+        return elemento;
+      }
+    });
+    this.setState({data:search}); /*actualiza la tabla*/
+  }
+
+  componentDidMount(){
+    this.setState({data:data});
+  } 
+
   handleChange = (e) => {
     this.setState({
       form: {
@@ -109,7 +135,11 @@ class App extends React.Component {
       <>
         <Container >
         <br />
-          <Button color="success"  onClick={()=>this.mostrarModalInsertar()}>Crear</Button>
+        
+          <Button color="success"  onClick={()=>this.mostrarModalInsertar()}>Crear un nuevo producto</Button>
+          <input name="busqueda" value={this.state.busqueda} placeholder='buscar' className='border-gray-700 px-2 py-1  '  onChange={this.onChange}/>
+         
+          <br />
           <br />
           <br />
           <Table>
@@ -271,12 +301,12 @@ class App extends React.Component {
               <label>
                 Estado: 
               </label>
-              <input
-                className="form-control"
-                name="Estado"
-                type="text"
-                onChange={this.handleChange}
-              />
+              <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
+               <option selected value="0">Elige una opcion</option>
+               <option>Disponible</option> 
+                <option>No Disponible</option> 
+                
+              </select>
             </FormGroup>
 
           </ModalBody>

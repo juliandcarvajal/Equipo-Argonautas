@@ -9,9 +9,7 @@
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    margin-right: auto;
-    margin-left: auto;
-    min-width: auto;
+    
 }    
 body{
     background-image:url(../media/productos.jpg);
