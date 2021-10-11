@@ -17,9 +17,11 @@ return(
         <div className="encabezado">
             <nav>
                 <ul> 
-                    <li><a href="#">Iniciar sesión</a></li>
                     
-                   
+                    <Link to='/Login' className="lin">
+                        <li><a href="#">Iniciar sesión</a></li>
+                    </Link>
+                
                     <li><a href="#">Registrarse</a></li>
                     
                     <li><a href="#">Inicio</a></li>
