@@ -6,6 +6,7 @@ import GestorUsuarios from './pages/GestorUsuarios';
 import GestorVentas from './pages/GestorVentas';
 import Navegador from './pages/Navegador';
 import Login from './pages/Login';
+import TotalVentas from './pages/TotalVentas';
 
 
 
@@ -34,9 +35,13 @@ function App() {
            <Login/>
        </Route>
 
-=
+
          <Route path ='/GestorProductos'> 
            <GestorProductos/>
+         </Route>
+
+         <Route path ='/TotalVentas'> 
+           <TotalVentas/>
          </Route>
 
          

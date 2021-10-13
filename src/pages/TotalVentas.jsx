@@ -13,18 +13,13 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID_Producto: 1, des_Producto: "Producto1", Cantidad: 1, Precio_Unitario:100, Precio_Total:100},
-  { ID_Producto: 2, des_Producto: "Producto2", Cantidad: 2, Precio_Unitario:200, Precio_Total:400},
-  { ID_Producto: 3, des_Producto: "Producto3", Cantidad: 4, Precio_Unitario:300, Precio_Total:1200},
-  { ID_Producto: 4, des_Producto: "Producto4", Cantidad: 3, Precio_Unitario:250, Precio_Total:750},
-  { ID_Producto: 5, des_Producto: "Producto5", Cantidad: 1, Precio_Unitario:500, Precio_Total:500},
+  { ID_Producto: 1, des_Producto: "Producto1", Cantidad: 1, Precio_Unitario:2.5, Precio_Total:150},
 
 ];
 
 
 const data2 = [
   { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez"},
-  
 ];
   
 
@@ -96,9 +91,8 @@ class GestorVentas extends React.Component {
       if (dato.ID_Producto == registro.ID_Producto) {
         arreglo[contador].ID_Producto = dato.ID_Producto;
         arreglo[contador].des_Producto = dato.des_Producto;
-        arreglo[contador].Cantidad = dato.Cantidad;
+        arreglo[contador].Valor_unitario = dato.Valor_unitario;
         arreglo[contador].Precio_Unitario = dato.Precio_Unitario;
-        arreglo[contador].Precio_Total = dato.Precio_Total;
       }
       contador++;
     });
@@ -138,7 +132,7 @@ class GestorVentas extends React.Component {
 
     var lista2=this.state.data2;
     lista2.fill(valorNuevo2);
-    this.setState({ modalInsertar2: false, data: lista2 });     
+    this.setState({ modalInsertar2: false, data: lista2 });  
 
   }
 
@@ -146,25 +140,16 @@ class GestorVentas extends React.Component {
   handleChange = (e) => {
     this.setState({
       form: {
-
         ...this.state.form,
         [e.target.name]: e.target.value,
       },
-    });
-
-    this.setState({
-
       form2: {
         ...this.state.form2,
         [e.target.name]: e.target.value,
       },
 
     });
-
   };
-
-
-
 
 
   render() {
@@ -243,7 +228,35 @@ class GestorVentas extends React.Component {
             </thead>
 
             <tfoot>
-
+                <tr>
+                    <th>Total Venta:</th>
+                    <th align="center">Valor_Total_Venta</th>                   
+                </tr>
+                <tr>
+                    <th>ID Venta:</th>
+                    <th align="center">ID Venta</th>                   
+                </tr>
+                <tr>
+                    <th>Fecha Venta:</th>
+                    <th align="center">Fecha Venta</th>                   
+                </tr>   
+                <tr>
+                    <th>Total Venta:</th>
+                    <th align="center">Valor_Total_Venta</th>                   
+                </tr>             
+                <tr>
+                    <th>Identificación Cliente:</th>
+                    <th align="center">Identifcación Cliente</th>                   
+                </tr>   
+                <tr>
+                    <th>Nombre Cliente:</th>
+                    <th align="center">Nombre cliente</th>                   
+                </tr>     
+                <tr>
+                    <th>Vendedor:</th>
+                    {this.state.data.map((dato) => (
+                    <th>{dato.vendedor}</th> ))}                  
+                </tr>            
             </tfoot>
 
             <br />
@@ -541,7 +554,6 @@ class GestorVentas extends React.Component {
               </label>
               <input
                 className="form-control"
-                form="form2"
                 name="Total_Venta"
                 type="text"
                 onChange={this.handleChange}
