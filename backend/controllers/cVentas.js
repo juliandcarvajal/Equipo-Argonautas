@@ -1,7 +1,7 @@
-const VentasRealizadas = require('../models/mVentas');
+const Venta = require('../models/mVentas');
 
 exports.getVentas = (req, res) => { /// Aca van todas las funciones a utilizar como la multiplicacion con postman q trabajamos y la conexion a la BD para
-    VentasRealizadas.find().then((postResult) => {
+    Venta.find().then((postResult) => {
         res.status(200).json(postResult);
     });
 
@@ -10,7 +10,7 @@ exports.getVentas = (req, res) => { /// Aca van todas las funciones a utilizar c
 };
 
 exports.addVentas = (req, res) => {
-    const ventasAdd = new VentasRealizadas({
+    const ventasAdd = new Venta({
         Fecha_Venta: req.body.Fecha_Venta,
         Producto: req.body.Producto,
         Referencia: req.body.Referencia,
@@ -28,7 +28,7 @@ exports.addVentas = (req, res) => {
 };
 
 exports.getVentaId = (req, res) => {
-    VentasRealizadas.findById(req.params.id).then((ventaResult) => {
+    Venta.findById(req.params.id).then((ventaResult) => {
         if (ventaResult) {
             res.status(200).json(ventaResult);
         } else {
@@ -36,3 +36,28 @@ exports.getVentaId = (req, res) => {
         }
     });
 };
+
+exports.deleteVentaId = (req, res) => {
+    Venta.findById(req.params.id).then((ventaResult) => {
+        if (ventaResult) {
+            Venta.findByIdAndDelete({ _id: req.params.id }, req.body, function (err) {
+                res.status(200).json("Deleted")
+            });
+        } else {
+            res.status(404).json("No Encontrado")
+        }
+    });
+
+}
+
+exports.updateVentaId = (req, res) => {
+    Venta.findById(req.params.id).then((ventaResult) => {
+        if (ventaResult) {
+            Venta.findByIdAndUpdate({ _id: req.params.id }, req.body, function (err) {
+                res.status(200).json("Update")
+            });
+        } else {
+            res.status(404).json("No Update")
+        }
+    });
+}
