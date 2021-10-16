@@ -10,7 +10,10 @@ import {
   ModalBody,
   FormGroup,
   ModalFooter,
+  Input,
 } from "reactstrap";
+
+
 
 const data = [
   { ID_Producto: 1, des_Producto: "Producto1", Cantidad: 1, Precio_Unitario:100, Precio_Total:100},
@@ -41,7 +44,7 @@ class GestorVentas extends React.Component {
       des_Producto: "",
       Cantidad: "",
       Precio_Unitario:"",
-      Precio_Total:"",
+      Precio_Total: "",
     },
   
     form2: {
@@ -324,6 +327,7 @@ class GestorVentas extends React.Component {
                 Cantidad: 
               </label>
               <input
+                id = "cant"
                 className="form-control"
                 name="Cantidad"
                 type="text"
@@ -337,6 +341,7 @@ class GestorVentas extends React.Component {
                 Precio Unitario: 
               </label>
               <input
+                id = "p_unit"
                 className="form-control"
                 name="Precio_Unitario"
                 type="text"
@@ -350,11 +355,12 @@ class GestorVentas extends React.Component {
                 Precio Total: 
               </label>
               <input
+                id = "ptotal"
                 className="form-control"
                 name="Precio_Total"
                 type="text"
                 onChange={this.handleChange}
-                value = {this.state.form.Precio_Total}
+                value = {this.state.form.Precio_Unitario  * this.state.form.Cantidad}
               />
             </FormGroup>
             
@@ -418,9 +424,11 @@ class GestorVentas extends React.Component {
                 Cantidad: 
               </label>
               <input
+                id="2"
                 className="form-control"
                 name="Cantidad"
                 type="number"
+                value={this.state.form.Cantidad}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -431,9 +439,11 @@ class GestorVentas extends React.Component {
                 Valor unitario: 
               </label>
               <input
+                id="1"
                 className="form-control"
                 name="Precio_Unitario"
                 type="number"
+                value={this.state.form.Precio_Unitario}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -446,6 +456,9 @@ class GestorVentas extends React.Component {
                 className="form-control"
                 name="Precio_Total"
                 type="number"
+                value = {this.state.form.Precio_Unitario * this.state.form.Cantidad}
+                
+
                 onChange={this.handleChange}
               />
             </FormGroup>
