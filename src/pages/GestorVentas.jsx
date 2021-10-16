@@ -23,7 +23,7 @@ const data = [
 
 
 const data2 = [
-  { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez"},
+  { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", productos: [data]},
   
 ];
   
@@ -138,12 +138,14 @@ class GestorVentas extends React.Component {
 
     var lista2=this.state.data2;
     lista2.fill(valorNuevo2);
-    this.setState({ modalInsertar2: false, data: lista2 });     
+    this.setState({ modalInsertar2: false, data2: lista2 });
 
   }
 
 
   handleChange = (e) => {
+
+      if(this.modalInsertar==true){
     this.setState({
       form: {
 
@@ -151,6 +153,9 @@ class GestorVentas extends React.Component {
         [e.target.name]: e.target.value,
       },
     });
+      }
+
+
 
     this.setState({
 
