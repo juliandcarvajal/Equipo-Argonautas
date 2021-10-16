@@ -101,7 +101,7 @@ class GestorVentas extends React.Component {
         arreglo[contador].des_Producto = dato.des_Producto;
         arreglo[contador].Cantidad = dato.Cantidad;
         arreglo[contador].Precio_Unitario = dato.Precio_Unitario;
-        arreglo[contador].Precio_Total = dato.Precio_Total;
+        arreglo[contador].Precio_Total = dato.Precio_Unitario * dato.Cantidad;
       }
       contador++;
     });
