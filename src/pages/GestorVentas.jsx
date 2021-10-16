@@ -145,7 +145,7 @@ class GestorVentas extends React.Component {
 
   handleChange = (e) => {
 
-      if(this.modalInsertar==true){
+  
     this.setState({
       form: {
 
@@ -153,7 +153,7 @@ class GestorVentas extends React.Component {
         [e.target.name]: e.target.value,
       },
     });
-      }
+
 
 
 
@@ -182,6 +182,7 @@ class GestorVentas extends React.Component {
           <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Ingresar Producto</Button>
           <> </>
           <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Información Venta</Button>
+
           </ul>
           <br />
 
@@ -353,7 +354,7 @@ class GestorVentas extends React.Component {
                 name="Precio_Total"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.Precio_Total}
+                value = {this.state.form.Precio_Total}
               />
             </FormGroup>
             
