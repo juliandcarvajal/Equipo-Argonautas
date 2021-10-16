@@ -17,7 +17,7 @@
     overflow: hidden;
     margin-right: 20px;
   }
-  header .nombre{
+  header .nombre {
     color: rgb(241, 232, 232);
     font-size: 45px;
     height: 50%;
@@ -41,7 +41,7 @@
   }
   header nav a:hover{
     background: rgb(207, 207, 82);
-    border-radius: 50px;
+    border-radius: 100px;
   }
   nav ul {
     list-style: none;
@@ -50,13 +50,19 @@
   nav ul li {
     float: right;
     font-size: 16px;
-  }
+  } 
   nav ul li a {
     display: block; 
-    padding: 20px;
+    padding: 0px;
     color: white;
     text-decoration: none;
+    margin-right: 15px;
   } 
+  .google{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
   .lin{
     display: block; 
     padding: 4px;
@@ -64,6 +70,9 @@
     text-decoration: none;
     float: right;
     font-size: 16px;
+  }
+  .google{
+    
   }
 h1{
   margin-left: 40%;

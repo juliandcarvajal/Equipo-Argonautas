@@ -89,7 +89,7 @@ class GestorVentas extends React.Component {
 
   editar = (dato) => {
     var opcion = window.confirm("Está seguro que desea actualizar el Resgistro de venta número  "+dato.ID_Producto);
-    if(opcion ==true){
+    if(opcion == true){
     var contador = 0;
     var arreglo = this.state.data;
     arreglo.map((registro) => {
