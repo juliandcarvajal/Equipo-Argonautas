@@ -117,8 +117,16 @@ class GestorVentas extends React.Component {
     }
   };
 
+  guardar= ()=>{
 
+    var valorNuevo= {...this.state.form2};
+       
+    var lista3= this.state.data3;
+    lista3.push(valorNuevo);
 
+    this.setState({ modalInsertar: false, data3: lista3 });
+
+  }
 
 
 
@@ -202,7 +210,7 @@ class GestorVentas extends React.Component {
           <> </>
           <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Información Venta</Button>
           <> </>
-          <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Guardar Venta</Button>
+          <Link to='/TotalVentas'><Button color = "success" type='button' onClick={()=>this.guardar()} >Guardar Venta</Button></Link>
           <> </>
           <Link to='/TotalVentas'><Button color = "success" type='button' >Listado Ventas</Button></Link>
 

@@ -15,8 +15,11 @@ import {
   ModalFooter,
 } from "reactstrap";
 
+
+
+
 const data = [
-  { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 1, Total_Venta: 18000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
 
 ];
 
@@ -304,12 +307,10 @@ class TotalVentas extends React.Component {
             >
               Cancelar
             </Button>
-            <Button
-              color="primary"
-              onClick={() => this.cerrarModalActualizar()}
-            >
-              Editar venta completa
-            </Button>
+
+            <Link to='/GestorVentas'><Button color = "success" type='button' >Editar Venta Completa</Button></Link>
+
+
           </ModalFooter>
         </Modal>
 
