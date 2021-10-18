@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from 'react-router-dom';
 import GestorVentas from "./GestorVentas";
 
 
@@ -137,8 +138,9 @@ class TotalVentas extends React.Component {
       <>
         <Container >
         <br />
-        
-          <Button color="success"  onClick={()=>this.mostrarModalInsertar()}>Crear un nuevo producto</Button>
+
+        <Link to='/GestorVentas'><Button color = "success" type='button' >Registrar nueva venta</Button></Link>
+
           <input name="busqueda" value={this.state.busqueda} placeholder='buscar' className='border-gray-700 px-2 py-1  '  onChange={this.onChange}/>
          
           <br />
@@ -160,7 +162,7 @@ class TotalVentas extends React.Component {
 
             <tbody>
               {this.state.data.map((dato) => (
-                <tr key={dato.ID}>
+                <tr key={dato.ID_Venta}>
                   <td>{dato.ID_Venta}</td>
                   <td>{dato.Total_Venta}</td>
                   <td>{dato.Fecha_Venta}</td>
