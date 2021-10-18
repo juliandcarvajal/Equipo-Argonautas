@@ -29,7 +29,7 @@ class TotalVentas extends React.Component {
     modalActualizar: false,
     modalInsertar: false,
     form: {
-      ID_Venta: "",
+      ID_Venta:"",
       Total_Venta:"",
       Fecha_Venta:"",
       ID_Cliente:"",
@@ -164,6 +164,8 @@ class TotalVentas extends React.Component {
             </thead>
 
             <tbody>
+
+
               {this.state.data.map((dato) => (
                 <tr key={dato.ID_Venta}>
                   <td>{dato.ID_Venta}</td>
