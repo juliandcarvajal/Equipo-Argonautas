@@ -25,6 +25,7 @@ const data = [
 ];
 
 
+
 const data2 = [
   { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", productos: [data]},
   
@@ -109,6 +110,11 @@ class GestorVentas extends React.Component {
     }
   };
 
+
+
+
+
+
   eliminar = (dato) => {
     var opcion = window.confirm("Estás Seguro que deseas Eliminar el resgistro de venta número "+dato.ID_Producto);
     if (opcion == true) {
@@ -124,15 +130,18 @@ class GestorVentas extends React.Component {
     }
   };
 
+
+
+
   insertar= ()=>{
 
- 
-
     var valorNuevo= {...this.state.form};
-    
+       
     var lista= this.state.data;
     lista.push(valorNuevo);
+
     this.setState({ modalInsertar: false, data: lista });
+
   }
 
   insertar2= ()=>{
@@ -185,6 +194,8 @@ class GestorVentas extends React.Component {
           <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Ingresar Producto</Button>
           <> </>
           <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Información Venta</Button>
+          <> </>
+          <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Guardar Venta</Button>
 
           </ul>
           <br />
@@ -428,7 +439,7 @@ class GestorVentas extends React.Component {
                 className="form-control"
                 name="Cantidad"
                 type="number"
-                value={this.state.form.Cantidad}
+                
                 onChange={this.handleChange}
               />
             </FormGroup>

@@ -1,5 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import GestorVentas from "./GestorVentas";
+
 
 import {
   Table,
@@ -13,41 +15,24 @@ import {
 } from "reactstrap";
 
 const data = [
-  { ID_Producto: 1, des_Producto: "Producto1", Cantidad: 1, Precio_Unitario:2.5, Precio_Total:150},
+  { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
 
 ];
 
-
-const data2 = [
-  { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez"},
-];
-  
-
-
-class GestorVentas extends React.Component {
+class TotalVentas extends React.Component {
   state = {
     data: data,
-    data2: data2,
     modalActualizar: false,
     modalInsertar: false,
-    modalInsertar2:false,
     form: {
-      ID_Producto: "",
-      des_Producto: "",
-      Cantidad: "",
-      Precio_Unitario:"",
-      Precio_Total:"",
-    },
-  
-    form2: {
       ID_Venta: "",
-      Fecha_Venta: "",
-      Total_Venta: "",
+      Total_Venta:"",
+      Fecha_Venta:"",
       ID_Cliente:"",
       Nombre_Cliente:"",
-      Vendedor: "",
+      Vendedor:"",
+      Estado:"",
     },
-
   };
 
   mostrarModalActualizar = (dato) => {
@@ -56,7 +41,6 @@ class GestorVentas extends React.Component {
       modalActualizar: true,
     });
   };
-
 
   cerrarModalActualizar = () => {
     this.setState({ modalActualizar: false });
@@ -68,45 +52,34 @@ class GestorVentas extends React.Component {
     });
   };
 
-  mostrarModalInsertar2 = () => {
-    this.setState({
-      modalInsertar2: true,
-    });
-  };
-
   cerrarModalInsertar = () => {
     this.setState({ modalInsertar: false });
   };
 
-  cerrarModalInsertar2 = () => {
-    this.setState({ modalInsertar2: false });
-  };
-
   editar = (dato) => {
-    var opcion = window.confirm("Está seguro que desea actualizar el Resgistro de venta número  "+dato.ID_Producto);
-    if(opcion ==true){
     var contador = 0;
     var arreglo = this.state.data;
     arreglo.map((registro) => {
-      if (dato.ID_Producto == registro.ID_Producto) {
-        arreglo[contador].ID_Producto = dato.ID_Producto;
-        arreglo[contador].des_Producto = dato.des_Producto;
-        arreglo[contador].Valor_unitario = dato.Valor_unitario;
-        arreglo[contador].Precio_Unitario = dato.Precio_Unitario;
+      if (dato.ID_Venta == registro.ID_Venta) {
+         arreglo[contador].Total_Venta = dato.Total_Venta;
+        arreglo[contador].Fecha_Venta = dato.Fecha_Venta;
+        arreglo[contador].ID_Cliente = dato.ID_Cliente;
+        arreglo[contador].Nombre_Cliente = dato.Nombre_Cliente;
+        arreglo[contador].Vendedor = dato.Vendedor;
+        arreglo[contador].Estado = dato.Estado;
       }
       contador++;
     });
     this.setState({ data: arreglo, modalActualizar: false });
-    }
   };
 
   eliminar = (dato) => {
-    var opcion = window.confirm("Estás Seguro que deseas Eliminar el resgistro de venta número "+dato.ID_Producto);
+    var opcion = window.confirm("Estás Seguro que deseas eliminar el registro de venta Nro. "+dato.ID_Venta);
     if (opcion == true) {
       var contador = 0;
       var arreglo = this.state.data;
       arreglo.map((registro) => {
-        if (dato.ID_Producto == registro.ID_Producto) {
+        if (dato.ID_Venta == registro.ID_Venta) {
           arreglo.splice(contador, 1);
         }
         contador++;
@@ -116,9 +89,6 @@ class GestorVentas extends React.Component {
   };
 
   insertar= ()=>{
-
- 
-
     var valorNuevo= {...this.state.form};
     
     var lista= this.state.data;
@@ -126,16 +96,31 @@ class GestorVentas extends React.Component {
     this.setState({ modalInsertar: false, data: lista });
   }
 
-  insertar2= ()=>{
-
-    var valorNuevo2 ={...this.state.form2};
-
-    var lista2=this.state.data2;
-    lista2.fill(valorNuevo2);
-    this.setState({ modalInsertar2: false, data: lista2 });  
-
+  onChange=async e=>{
+    e.persist();
+    await this.setState({busqueda:e.target.value});
+    /*console.log(this.state.busqueda);
+    console.log('lista filtrada',this.state.data.filter((elemento)=>{
+      console.log("elemento",elemento);
+      return JSON.stringify(elemento).toLowerCase().includes(this.state.busqueda.toLowerCase());
+    })
+    );
+    esto era para vefiricar salida por consola*/
+    
+    this.filtrar();  /*Se llama a la funcion filtar cada que se escribe en el buscador*/
+  }
+  filtrar=()=>{
+    var search=data.filter((elemento)=>{
+      if(JSON.stringify(elemento).toLowerCase().includes(this.state.busqueda.toLowerCase())){
+        return elemento;
+      }
+    });
+    this.setState({data:search}); /*actualiza la tabla*/
   }
 
+  componentDidMount(){
+    this.setState({data:data});
+  } 
 
   handleChange = (e) => {
     this.setState({
@@ -143,14 +128,8 @@ class GestorVentas extends React.Component {
         ...this.state.form,
         [e.target.name]: e.target.value,
       },
-      form2: {
-        ...this.state.form2,
-        [e.target.name]: e.target.value,
-      },
-
     });
   };
-
 
   render() {
     
@@ -158,231 +137,176 @@ class GestorVentas extends React.Component {
       <>
         <Container >
         <br />
-        <ul>
-          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Ingresar Producto</Button>
-          <> </>
-          <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Información Venta</Button>
-          </ul>
+        
+          <Button color="success"  onClick={()=>this.mostrarModalInsertar()}>Crear un nuevo producto</Button>
+          <input name="busqueda" value={this.state.busqueda} placeholder='buscar' className='border-gray-700 px-2 py-1  '  onChange={this.onChange}/>
+         
           <br />
-
           <br />
-
-            <Table className="table table-bordered table-striped">
-
-            
-            
+          <br />
+          <Table>
             <thead>
-              <tr className="bg-success">
-                <th>ID Venta</th>
-                <th>Fecha Venta</th>
+              <tr>
+                <th>ID_Venta</th>
                 <th>Total Venta</th>
+                <th>Fecha Venta</th>
                 <th>ID Cliente</th>
                 <th>Nombre Cliente</th>
                 <th>Vendedor</th>
-              </tr>
-            </thead>
-
-            <tfoot>
-
-            </tfoot>
-
-            <br />
-
-            <tbody>
-
-            {this.state.data2.map((dato) => (
-                <tr key={dato.ID_Venta}>
-                  <td>{dato.ID_Venta}</td>
-                  <td>{dato.Fecha_Venta}</td>
-                  <td>{dato.Total_Venta}</td>
-                  <td>{dato.ID_Cliente}</td>
-                  <td>{dato.Nombre_Cliente}</td>
-                  <td>{dato.Vendedor}</td>
-                  <td>
-                    
-                  </td>
-                </tr>
-              ))}
-              
-            </tbody>
-
-            <br />
-
-
-
-            </Table>
-
-
-
-           <Table className="table table-striped">
-
-            <thead>
-              <tr>
-                <th>ID Producto</th>
-                <th>Descripción</th>
-                <th>Cantidad</th>
-                <th>Precio unidad</th>
-                <th>Total</th>
+                <th>Estado</th>
                 <th>Acción</th>
               </tr>
             </thead>
 
-            <tfoot>
-                <tr>
-                    <th>Total Venta:</th>
-                    <th align="center">Valor_Total_Venta</th>                   
-                </tr>
-                <tr>
-                    <th>ID Venta:</th>
-                    <th align="center">ID Venta</th>                   
-                </tr>
-                <tr>
-                    <th>Fecha Venta:</th>
-                    <th align="center">Fecha Venta</th>                   
-                </tr>   
-                <tr>
-                    <th>Total Venta:</th>
-                    <th align="center">Valor_Total_Venta</th>                   
-                </tr>             
-                <tr>
-                    <th>Identificación Cliente:</th>
-                    <th align="center">Identifcación Cliente</th>                   
-                </tr>   
-                <tr>
-                    <th>Nombre Cliente:</th>
-                    <th align="center">Nombre cliente</th>                   
-                </tr>     
-                <tr>
-                    <th>Vendedor:</th>
-                    {this.state.data.map((dato) => (
-                    <th>{dato.vendedor}</th> ))}                  
-                </tr>            
-            </tfoot>
-
-            <br />
-
             <tbody>
               {this.state.data.map((dato) => (
-                <tr key={dato.ID_Producto}>
-                  <td>{dato.ID_Producto}</td>
-                  <td>{dato.des_Producto}</td>
-                  <td>{dato.Cantidad}</td>
-                  <td>{dato.Precio_Unitario}</td>
-                  <td>{dato.Precio_Total}</td>
+                <tr key={dato.ID}>
+                  <td>{dato.ID_Venta}</td>
+                  <td>{dato.Total_Venta}</td>
+                  <td>{dato.Fecha_Venta}</td>
+                  <td>{dato.ID_Cliente}</td>
+                  <td>{dato.Nombre_Cliente}</td>
+                  <td>{dato.Vendedor}</td>
+                  <td>{dato.Estado}</td>
                   <td>
                     <Button
                       color="primary"
                       onClick={() => this.mostrarModalActualizar(dato)}
                     >
-                      Cambiar
+                      Editar
                     </Button>{" "}
-                    <Button color="danger" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
+                    <Button color="secondary" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
                   </td>
                 </tr>
               ))}
             </tbody>
-
-            <br />
-
-
-
           </Table>
-
-
-
         </Container>
 
         <Modal isOpen={this.state.modalActualizar}>
           <ModalHeader>
-           <div><h3>Editar Registro</h3></div>
+           <div><h3>Detalles de venta</h3></div>
           </ModalHeader>
 
           <ModalBody>
             <FormGroup>
               <label>
-               ID Producto:
+               ID Venta:
               </label>
             
               <input
                 className="form-control"
                 readOnly
-                name="ID_Producto"
+                name="ID_Venta"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.ID_Producto}
+                value={this.state.form.ID_Venta}
               />
             </FormGroup>
             
             <FormGroup>
               <label>
-                Descripción del Producto: 
+                Total Venta: 
               </label>
               <input
                 className="form-control"
-                name="des_Producto"
-                type="text"
+                readOnly
+                name="Total_Venta"
+                type="number"
                 onChange={this.handleChange}
-                value={this.state.form.des_Producto}
-              />
-            </FormGroup>
-            
-            <FormGroup>
-              <label>
-                Cantidad: 
-              </label>
-              <input
-                className="form-control"
-                name="Cantidad"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.form.Cantidad}
+                value={this.state.form.Total_Venta}
               />
             </FormGroup>
 
             <FormGroup>
               <label>
-                Precio Unitario: 
+                Fecha Venta: 
               </label>
               <input
                 className="form-control"
-                name="Precio_Unitario"
-                type="text"
+                readOnly
+                name="Fecha_Venta"
+                type="date"
                 onChange={this.handleChange}
-                value={this.state.form.Precio_Unitario}
+                value={this.state.form.Fecha_Venta}
               />
             </FormGroup>
 
             <FormGroup>
               <label>
-                Precio Total: 
+                Identificación Cliente: 
               </label>
               <input
                 className="form-control"
-                name="Precio_Total"
+                readOnly
+                name="ID_Cliente"
+                type="number"
+                onChange={this.handleChange}
+                value={this.state.form.ID_Cliente}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+                Nombre del Cliente: 
+              </label>
+              <input
+                className="form-control"
+                readOnly
+                name="Nombre_Cliente"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.Precio_Total}
+                value={this.state.form.Nombre_Cliente}
               />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+                Vendedor: 
+              </label>
+              <input
+                className="form-control"
+                readOnly
+                name="Vendedor"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Vendedor}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+                Estado: 
+              </label>
+              <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
+               <option selected value="0">Seleccione para cambiar estado de venta</option>
+               <option>En Proceso</option> 
+                <option>Cancelada</option> 
+                <option>Entregada</option> 
+                
+              </select>
             </FormGroup>
             
           </ModalBody>
 
           <ModalFooter>
-
-            <Button 
+            <Button
               color="primary"
               onClick={() => this.editar(this.state.form)}
-          
-
-              
             >
-              Editar
+              Cambiar estado
             </Button>
             <Button
               color="danger"
               onClick={() => this.cerrarModalActualizar()}
             >
               Cancelar
+            </Button>
+            <Button
+              color="primary"
+              onClick={() => this.cerrarModalActualizar()}
+            >
+              Editar venta completa
             </Button>
           </ModalFooter>
         </Modal>
@@ -391,30 +315,42 @@ class GestorVentas extends React.Component {
 
         <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-           <div><h3>Ingreso nuevo producto</h3></div>
+           <div><h3>Registrar producto </h3></div>
           </ModalHeader>
 
           <ModalBody>
             <FormGroup>
               <label>
-                ID Producto: 
+                ID: 
               </label>
               
               <input
                 className="form-control"
-                name="ID_Producto"
-                type="number"
+                name="ID"
+                type="text"
                 onChange={this.handleChange}
               />
             </FormGroup>
             
             <FormGroup>
               <label>
-                Descripción del Producto: 
+                descripción: 
               </label>
               <input
                 className="form-control"
-                name="des_Producto"
+                name="descripción"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            
+            <FormGroup>
+              <label>
+                Valor_unitario: 
+              </label>
+              <input
+                className="form-control"
+                name="Valor_unitario"
                 type="text"
                 onChange={this.handleChange}
               />
@@ -422,39 +358,14 @@ class GestorVentas extends React.Component {
 
             <FormGroup>
               <label>
-                Cantidad: 
+                Estado: 
               </label>
-              <input
-                className="form-control"
-                name="Cantidad"
-                type="number"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-
-            <FormGroup>
-              <label>
-                Valor unitario: 
-              </label>
-              <input
-                className="form-control"
-                name="Precio_Unitario"
-                type="number"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Precio Total: 
-              </label>
-              <input
-                className="form-control"
-                name="Precio_Total"
-                type="number"
-                onChange={this.handleChange}
-              />
+              <select  className="form-control" name="Estado" value={this.state.form.Estado} onChange={this.handleChange}>
+               <option selected value="0">Elige una opcion</option>
+               <option>Disponible</option> 
+                <option>No Disponible</option> 
+                
+              </select>
             </FormGroup>
 
           </ModalBody>
@@ -474,123 +385,8 @@ class GestorVentas extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
-
-
-        <Modal isOpen={this.state.modalInsertar2}>
-          <ModalHeader>
-           <div><h3>Datos Venta</h3></div>
-          </ModalHeader>
-
-          <ModalBody>
-            <FormGroup>
-              <label>
-                ID Venta: 
-              </label>
-              
-              <input
-                className="form-control"
-                form="form2"
-                name="ID_Venta"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            
-            <FormGroup>
-              <label>
-                Fecha de la venta: 
-              </label>
-              <input
-                className="form-control"
-                form="form2"
-                name="Fecha_Venta"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            
-            <FormGroup>
-              <label>
-                Identificación del Cliente: 
-              </label>
-              <input
-                className="form-control"
-                form="form2"
-                name="ID_Cliente"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Nombre del Cliente: 
-              </label>
-              <input
-                className="form-control"
-                form="form2"
-                name="Nombre_Cliente"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Vendedor: 
-              </label>
-              <input
-                className="form-control"
-                form="form2"
-                name="Vendedor"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <label>
-                Valor Total Venta: 
-              </label>
-              <input
-                className="form-control"
-                name="Total_Venta"
-                type="text"
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-
-
-
-          </ModalBody>
-
-          <ModalFooter>
-            <Button
-              color="primary"
-              onClick={() => this.insertar2()}
-            >
-              Guardar
-            </Button>
-            <Button
-              className="btn btn-danger"
-              onClick={() => this.cerrarModalInsertar2()}
-            >
-              Cerrar
-            </Button>
-          </ModalFooter>
-        </Modal>
-
-
-
-
       </>
     );
   }
 }
-
-
-
-
-
-
-export default GestorVentas;
+export default TotalVentas;

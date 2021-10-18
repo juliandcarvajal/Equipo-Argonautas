@@ -19,7 +19,7 @@ const data = [
   { ID: 144523, Fecha: "Naruto", ID_Producto: "Naruto", Cantidad:"A",Precio_Unitario:"",Valor_Total:"",N_Documento:"",Cliente:"",Vendedor:""},
  ];
 
-class GestorVentas extends React.Component {
+class GestorVenta extends React.Component {
   state = {
     data: data,
     modalActualizar: false,
@@ -477,4 +477,4 @@ class GestorVentas extends React.Component {
   
 }
 
-export default GestorVentas;
+export default GestorVenta;
