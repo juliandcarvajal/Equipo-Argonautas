@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
@@ -30,6 +31,11 @@ const data2 = [
   { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", productos: [data]},
   
 ];
+
+const data3 = [
+  { ID_Venta: 1, Total_Venta: 15000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", productos: [data]},
+  
+];
   
 
 
@@ -37,6 +43,7 @@ class GestorVentas extends React.Component {
   state = {
     data: data,
     data2: data2,
+    data3: data3,
     modalActualizar: false,
     modalInsertar: false,
     modalInsertar2:false,
@@ -196,6 +203,8 @@ class GestorVentas extends React.Component {
           <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Información Venta</Button>
           <> </>
           <Button color="success" onClick={()=>this.mostrarModalInsertar2()}>Guardar Venta</Button>
+          <> </>
+          <Link to='/TotalVentas'><Button color = "success" type='button' >Listado Ventas</Button></Link>
 
           </ul>
           <br />
@@ -382,11 +391,9 @@ class GestorVentas extends React.Component {
             <Button 
               color="primary"
               onClick={() => this.editar(this.state.form)}
-          
-
-              
+    
             >
-              Editar
+              Guardar
             </Button>
             <Button
               color="danger"
@@ -508,8 +515,10 @@ class GestorVentas extends React.Component {
                 className="form-control"
                 form="form2"
                 name="ID_Venta"
-                type="text"
+                type="number"
+                value={this.state.form2.ID_Venta}
                 onChange={this.handleChange}
+                
               />
             </FormGroup>
             
@@ -522,6 +531,7 @@ class GestorVentas extends React.Component {
                 form="form2"
                 name="Fecha_Venta"
                 type="text"
+                value={this.state.form2.Fecha_Venta}
                 onChange={this.handleChange}
               />
             </FormGroup>
