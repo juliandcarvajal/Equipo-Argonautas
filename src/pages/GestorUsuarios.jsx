@@ -49,6 +49,17 @@ class App extends React.Component {
     this.setState({ modalInsertar: false });
   };
 
+  listar = async () => {
+    try {
+      const resp = await fetch("http://localhost:3002/api/usuarios", { method: "GET" })
+      const data = await resp.json()
+      this.setState({ data: data })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   editar = (dato) => {
     var contador = 0;
     var arreglo = this.state.data;
@@ -111,7 +122,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({data:data});
+    this.listar()
   }
 
   handleChange = (e) => {
@@ -139,6 +150,8 @@ class App extends React.Component {
               <tr>
                 <th>ID</th>
                 <th>Nombre</th>
+                <th>Documento</th>
+                <th>Correo</th>
                 <th>Rol</th>
                 <th>Estado</th>
                 <th>Acción</th>
@@ -147,10 +160,12 @@ class App extends React.Component {
 
             <tbody>
               {this.state.data.map((dato) => (
-                <tr key={dato.ID}>
-                  <td>{dato.ID}</td>
-                  <td>{dato.Nombre}</td>
-                  <td>{dato.Rol}</td>
+                <tr key={dato._id}>
+                  <td>{dato._id}</td>
+                  <td>{dato.NombreApellido}</td>
+                  <td>{dato.Documento}</td>
+                  <td>{dato.Correo}</td>
+                  <td>{dato.Role}</td>
                   <td>{dato.Estado}</td>
                   <td>
                     <Button
