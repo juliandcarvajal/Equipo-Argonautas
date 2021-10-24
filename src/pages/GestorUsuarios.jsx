@@ -61,19 +61,23 @@ class App extends React.Component {
     }
   }
 
-  editar = (dato) => {
-    var contador = 0;
-    var arreglo = this.state.data;
-    arreglo.map((registro) => {
-      if (dato.ID == registro.ID) {
-         arreglo[contador].ID = dato.ID;
-        arreglo[contador].Nombre = dato.Nombre;
-        arreglo[contador].Rol = dato.Rol;
-        arreglo[contador].Estado = dato.Estado;
-      }
-      contador++;
-    });
-    this.setState({ data: arreglo, modalActualizar: false });
+  editar = async (dato) => {
+    try {
+      const resp = await fetch("http://localhost:3002/api/usuarios/"+dato._id, {
+        method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+          ...this.state.form
+
+        })
+      })
+      const data = await resp.text()
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+
+    this.listar()
+    this.cerrarModalActualizar()
+    
   };
 
   eliminar = (dato) => {
@@ -211,10 +215,23 @@ class App extends React.Component {
                 name="ID"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.ID}
+                value={this.state.form._id}
               />
             </FormGroup>
-            
+
+            <FormGroup>
+              <label>
+              Documento: 
+              </label>
+              <input
+                className="form-control"
+                name="Nombre"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Documento}
+              />
+            </FormGroup>
+                        
             <FormGroup>
               <label>
                 Nombre: 
@@ -224,7 +241,46 @@ class App extends React.Component {
                 name="Nombre"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.form.Nombre}
+                value={this.state.form.NombreApellido}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+              Telefono: 
+              </label>
+              <input
+                className="form-control"
+                name="Nombre"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Telefono}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+              Correo: 
+              </label>
+              <input
+                className="form-control"
+                name="Nombre"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Correo}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+              Sucursal: 
+              </label>
+              <input
+                className="form-control"
+                name="Nombre"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.Sucursal}
               />
             </FormGroup>
             
@@ -232,7 +288,7 @@ class App extends React.Component {
               <label>
                 Rol: 
               </label>
-              <select  className="form-control" name="Rol" value={this.state.form.Rol} onChange={this.handleChange}>
+              <select  className="form-control" name="Role" value={this.state.form.Role} onChange={this.handleChange}>
                <option selected value="0">Elige una opcion</option>
                <option>Administrador</option> 
                 <option>Vendedor</option> 
