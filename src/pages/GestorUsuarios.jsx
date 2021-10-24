@@ -4,6 +4,7 @@ import {
   Table,Button,Container,Modal,ModalHeader,ModalBody,FormGroup,ModalFooter,
 } from "reactstrap";
 import '../styles/usuarios.css';
+import { Link } from 'react-router-dom';
 
 const data = [
   { ID: 1, Nombre: "Angelica", Rol: "Administrador", Estado:"Autorizado"},
@@ -332,6 +333,9 @@ class App extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
+        <Link  to='/Navegador'>
+          <button type='button' className="bton">Volver</button>  
+        </Link>
       </>
     );
   }

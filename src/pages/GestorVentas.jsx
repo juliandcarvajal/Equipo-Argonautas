@@ -616,7 +616,9 @@ class GestorVentas extends React.Component {
           </ModalFooter>
         </Modal>
 
-
+        <Link  to='/Navegador'>
+          <button type='button' className="bton">Volver</button>  
+        </Link>
 
 
       </>

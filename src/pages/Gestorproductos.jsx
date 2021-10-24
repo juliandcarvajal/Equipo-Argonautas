@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../styles/usuarios.css';
+import { Link } from 'react-router-dom';
 
 import {
   Table,
@@ -411,6 +412,9 @@ class App extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
+        <Link  to='/Navegador'>
+          <button type='button' className="bton">Volver</button>  
+        </Link>
       </>
     );
   }

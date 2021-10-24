@@ -8,8 +8,6 @@ import Navegador from './pages/Navegador';
 import Login from './pages/Login';
 import TotalVentas from './pages/TotalVentas';
 
-
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
