@@ -52,7 +52,12 @@ class TotalVentas extends React.Component {
   };
 
   cerrarModalActualizar = () => {
+
+    var opcion = window.confirm("Estás Seguro que deseas cerrar esta ventana?");
+    if (opcion == true) {
+
     this.setState({ modalActualizar: false });
+    };
   };
 
   mostrarModalInsertar = () => {
@@ -66,6 +71,8 @@ class TotalVentas extends React.Component {
   };
 
   editar = (dato) => {
+    var opcion = window.confirm("Estás Seguro que deseas Actualizar el estado el registro de venta? "+dato.ID_Venta);
+    if (opcion == true) {
     var contador = 0;
     var arreglo = this.state.data;
     arreglo.map((registro) => {
@@ -80,6 +87,13 @@ class TotalVentas extends React.Component {
       contador++;
     });
     this.setState({ data: arreglo, modalActualizar: false });
+
+    }
+
+
+
+
+
   };
 
   eliminar = (dato) => {
