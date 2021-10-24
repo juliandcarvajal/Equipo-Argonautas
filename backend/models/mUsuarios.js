@@ -6,7 +6,8 @@ const asignacionUsuario = mongoose.Schema({
     Telefono: { type: Number },
     Correo: { type: String, required: true },
     Sucursal: { type: String, required: true },
-    Role: { type: String, required: true }
+    Role: { type: String, required: true },
+    Estado: { type: String }
 });
 
 module.exports = mongoose.model("AsignacionUsuario", asignacionUsuario);

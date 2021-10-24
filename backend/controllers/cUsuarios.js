@@ -14,7 +14,8 @@ exports.addUsuarios = (req, res) => {
         Telefono: req.body.Telefono,
         Correo: req.body.Correo,
         Sucursal: req.body.Sucursal,
-        Role: req.body.Role
+        Role: req.body.Role,
+        Estado: req.body.Estado
     });
 
     usuariosAdd.save().then((createdUsuario) => {

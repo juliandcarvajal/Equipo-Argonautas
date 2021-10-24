@@ -91,13 +91,24 @@ class App extends React.Component {
     }
   };
 
-  insertar= ()=>{
-    var valorNuevo= {...this.state.form};
-    
-    var lista= this.state.data;
-    lista.push(valorNuevo);
-    this.setState({ modalInsertar: false, data: lista });
+  insertar = async () => {
+    try {
+      const resp = await fetch("http://localhost:3002/api/usuarios", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+          ...this.state.form
+
+        })
+      })
+      const data = await resp.text()
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+
+    this.listar()
+    this.cerrarModalInsertar()
   }
+
 
   
   /*captura el valor del input*/
@@ -263,18 +274,18 @@ class App extends React.Component {
 
         <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-           <div><h3>Insertar Nombre</h3></div>
+           <div><h3>Crear Usuario</h3></div>
           </ModalHeader>
 
           <ModalBody>
             <FormGroup>
               <label>
-                ID: 
+              Documento: 
               </label>
               
               <input
                 className="form-control"
-                name="ID"
+                name="Documento"
                 type="text"
                 onChange={this.handleChange}
               />
@@ -286,7 +297,43 @@ class App extends React.Component {
               </label>
               <input
                 className="form-control"
-                name="Nombre"
+                name="NombreApellido"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+              Telefono: 
+              </label>
+              <input
+                className="form-control"
+                name="Telefono"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+              Correo: 
+              </label>
+              <input
+                className="form-control"
+                name="Correo"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <label>
+              Sucursal: 
+              </label>
+              <input
+                className="form-control"
+                name="Sucursal"
                 type="text"
                 onChange={this.handleChange}
               />
@@ -296,7 +343,7 @@ class App extends React.Component {
               <label>
                 Rol: 
               </label>
-              <select  className="form-control" name="Rol" value={this.state.form.Rol} onChange={this.handleChange}>
+              <select  className="form-control" name="Role" value={this.state.form.Role} onChange={this.handleChange}>
                <option selected value="0">Elige una opcion</option>
                <option>Administrador</option> 
                 <option>Vendedor</option> 
@@ -323,7 +370,7 @@ class App extends React.Component {
               color="primary"
               onClick={() => this.insertar()}
             >
-              Insertar
+              Crear
             </Button>
             <Button
               className="btn btn-danger"
