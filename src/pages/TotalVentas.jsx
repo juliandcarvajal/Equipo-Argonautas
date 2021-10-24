@@ -19,7 +19,12 @@ import {
 
 
 const data = [
-  { ID_Venta: 1, Total_Venta: 18000, Fecha_Venta: "11/10/2021", ID_Cliente: 1, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 1, Total_Venta: 18000, Fecha_Venta: "11/10/2021", ID_Cliente: 11, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 2, Total_Venta: 20000, Fecha_Venta: "12/10/2021", ID_Cliente: 22, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 3, Total_Venta: 12000, Fecha_Venta: "13/10/2021", ID_Cliente: 33, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 4, Total_Venta: 26000, Fecha_Venta: "14/10/2021", ID_Cliente: 44, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 5, Total_Venta: 34000, Fecha_Venta: "16/10/2021", ID_Cliente: 55, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
+  { ID_Venta: 6, Total_Venta: 14000, Fecha_Venta: "19/10/2021", ID_Cliente: 66, Nombre_Cliente: "Julian Carvajal", Vendedor: "Dario Gutierrez", Estado:"Disponible"},
 
 ];
 
