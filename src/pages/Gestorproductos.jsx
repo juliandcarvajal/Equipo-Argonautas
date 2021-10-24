@@ -14,21 +14,15 @@ import {
   ModalFooter,
 } from "reactstrap";
 
-const data = [
-  { ID: 1, descripción: "Collar de perro", Valor_unitario: "$ 10.000", Estado: "Disponible" },
-  { ID: 2, descripción: "Gimnasio de gato pequeño", Valor_unitario: "$80.000", Estado: "Disponible" },
-  { ID: 3, descripción: "Comedero de perros", Valor_unitario: "$30.000", Estado: "Dispoible" },
-  { ID: 4, descripción: "Gimnasio  de gato grande", Valor_unitario: "$130.000", Estado: "No disponible" },
-  { ID: 5, descripción: "Galletas artesanales de perro ", Valor_unitario: "$6.000", Estado: "Disponible" },
-  { ID: 6, descripción: "Cama de perro", Valor_unitario: "$35.000", Estado: "Disponible" },
-];
+
 const stateToAvailable = { Disponible: true, "No Disponible": false }
 class App extends React.Component {
   state = {
-    data: data,
+    data: [],
     modalActualizar: false,
     modalInsertar: false,
     form: {
+      //Actuzalizar está parte con los campos que son
       ID: "",
       Descripción: "",
       Valor_unitario: "",
@@ -68,33 +62,44 @@ class App extends React.Component {
     }
   }
 
-  editar = (dato) => {
-    var contador = 0;
-    var arreglo = this.state.data;
-    arreglo.map((registro) => {
-      if (dato.ID == registro.ID) {
-        arreglo[contador].ID = dato.ID;
-        arreglo[contador].descripción = dato.descripción;
-        arreglo[contador].Valor_unitario = dato.Valor_unitario;
-        arreglo[contador].Estado = dato.Estado;
-      }
-      contador++;
-    });
-    this.setState({ data: arreglo, modalActualizar: false });
+  editar = async (dato) => {
+
+    try {
+      const resp = await fetch(`http://localhost:3002/api/products/${dato._id}`, {
+        method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+          ...this.state.form,
+          disponible: stateToAvailable[this.state.form.disponible]
+
+        })
+      })
+      const data = await resp.text()
+
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+    const lista = this.state.data;
+    lista[dato.index] = { ...lista[dato.index], ...dato }
+    this.setState({ modalActualizar: false, data: lista });
   };
 
-  eliminar = (dato) => {
-    var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento " + dato.ID);
+  eliminar = async (id, index) => {
+    var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento");
     if (opcion == true) {
-      var contador = 0;
-      var arreglo = this.state.data;
-      arreglo.map((registro) => {
-        if (dato.ID == registro.ID) {
-          arreglo.splice(contador, 1);
-        }
-        contador++;
-      });
-      this.setState({ data: arreglo, modalActualizar: false });
+      try {
+        const resp = await fetch(`http://localhost:3002/api/products/${id}`, {
+          method: "DELETE",
+        })
+        const data = await resp.text()
+
+        console.log(data)
+      } catch (err) {
+        console.log(err)
+      }
+      const lista = this.state.data;
+      lista.splice(index, 1)
+      this.setState({ modalActualizar: false, data: lista });
+
     }
   };
 
@@ -132,7 +137,7 @@ class App extends React.Component {
     this.filtrar();  /*Se llama a la funcion filtar cada que se escribe en el buscador*/
   }
   filtrar = () => {
-    var search = data.filter((elemento) => {
+    var search = this.data.filter((elemento) => {
       if (JSON.stringify(elemento).toLowerCase().includes(this.state.busqueda.toLowerCase())) {
         return elemento;
       }
@@ -179,7 +184,7 @@ class App extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.data.map((dato) => (
+              {this.state.data.map((dato, index) => (
                 <tr key={dato._id}>
                   <td>{dato._id}</td>
                   <td>{dato.title}</td>
@@ -190,11 +195,11 @@ class App extends React.Component {
                   <td>
                     <Button
                       color="primary"
-                      onClick={() => this.mostrarModalActualizar(dato)}
+                      onClick={() => this.mostrarModalActualizar({ ...dato, index })}
                     >
                       Editar
                     </Button>{" "}
-                    <Button color="secondary" onClick={() => this.eliminar(dato._id)}>Eliminar</Button>
+                    <Button color="secondary" onClick={() => this.eliminar(dato._id, index)}>Eliminar</Button>
                   </td>
                 </tr>
               ))}
@@ -412,8 +417,8 @@ class App extends React.Component {
             </Button>
           </ModalFooter>
         </Modal>
-        <Link  to='/Navegador'>
-          <button type='button' className="bton">Volver</button>  
+        <Link to='/Navegador'>
+          <button type='button' className="bton">Volver</button>
         </Link>
       </>
     );
