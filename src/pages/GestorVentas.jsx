@@ -47,6 +47,18 @@ class GestorVentas extends React.Component {
     modalActualizar: false,
     modalInsertar: false,
     modalInsertar2:false,
+    productList:[],
+    modalSelecionarProductos:false,
+    productoForm: {
+      //Actuzalizar está parte con los campos que son
+      _id: "",
+      title: "",
+      price: "",
+      url: "",
+      categoria: "",
+      disponible: "",
+      description: "",
+    },
     form: {
       ID_Producto: "",
       des_Producto: "",
@@ -73,12 +85,21 @@ class GestorVentas extends React.Component {
     });
   };
 
+  agregarProducto = (dato) => {
+    this.setState({
+      productoForm: dato,
+      modalSelecionarProductos: false,
+    });
+  };
+
 
   cerrarModalActualizar = () => {
     this.setState({ modalActualizar: false });
   };
 
   mostrarModalInsertar = () => {
+    console.log("vamos bien")
+    this.listarProductos()
     this.setState({
       modalInsertar: true,
     });
@@ -97,6 +118,17 @@ class GestorVentas extends React.Component {
   cerrarModalInsertar2 = () => {
     this.setState({ modalInsertar2: false });
   };
+
+  listarProductos = async () => {
+    try {
+      const resp = await fetch("http://localhost:3002/api/products", { method: "GET" })
+      const data = await resp.json()
+      this.setState({ productList: data })
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   editar = (dato) => {
     var opcion = window.confirm("Está seguro que desea actualizar el Resgistro de venta número  "+dato.ID_Producto);
@@ -412,26 +444,71 @@ class GestorVentas extends React.Component {
           </ModalFooter>
         </Modal>
 
+        <Modal isOpen={this.state.modalSelecionarProductos} >
+        <ModalHeader>
+           <div><h3>Seleccione Producto</h3></div>
+          </ModalHeader>
+          <ModalBody>
+          <Table>
+            <thead>
+              <tr>                
+                <th>Tille</th>
+                <th>Price</th>
+                <th>Disponible</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              {this.state.productList.map((producto,index) => (
+                <tr key={producto._id}>
+                  <td>{producto.title}</td>
+                  <td>{producto.price}</td>
+                  <td>{producto.disponible ? "Disponible" : "No disponible"}</td>
+                  <td>
+                    <Button
+                      color="primary"
+                      onClick={() => this.agregarProducto({ ...producto })}
+                    >
+                      Agregar
+                    </Button>{" "}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          </ModalBody>
 
-        <Modal isOpen={this.state.modalInsertar}>
+        </Modal>
+        
+        <Modal isOpen={this.state.modalInsertar} >
           <ModalHeader>
            <div><h3>Ingreso nuevo producto</h3></div>
+           <Button
+                      color="primary"
+                      onClick={() => this.setState({modalSelecionarProductos: true })}
+                    >
+                      Agregar producto
+                    </Button>{" "}
           </ModalHeader>
 
           <ModalBody>
-            <FormGroup>
+
+          
+              <FormGroup>
               <label>
-                ID Producto: 
+              Producto: 
               </label>
               
               <input
                 className="form-control"
                 name="ID_Producto"
-                type="number"
+                type="text"
                 onChange={this.handleChange}
+                value={this.state.productoForm._id}
               />
             </FormGroup>
+             
+          
             
             <FormGroup>
               <label>
@@ -442,6 +519,7 @@ class GestorVentas extends React.Component {
                 name="des_Producto"
                 type="text"
                 onChange={this.handleChange}
+                value={this.state.productoForm.description}
               />
             </FormGroup>
 
@@ -469,7 +547,7 @@ class GestorVentas extends React.Component {
                 className="form-control"
                 name="Precio_Unitario"
                 type="number"
-                value={this.state.form.Precio_Unitario}
+                value={this.state.productoForm.price}
                 onChange={this.handleChange}
               />
             </FormGroup>
@@ -482,7 +560,7 @@ class GestorVentas extends React.Component {
                 className="form-control"
                 name="Precio_Total"
                 type="number"
-                value = {this.state.form.Precio_Unitario * this.state.form.Cantidad}
+                value = {this.state.productoForm.price * this.state.form.Cantidad}
                 
 
                 onChange={this.handleChange}
