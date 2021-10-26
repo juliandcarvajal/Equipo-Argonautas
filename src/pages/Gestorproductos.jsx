@@ -18,6 +18,7 @@ import {
 const stateToAvailable = { Disponible: true, "No Disponible": false }
 class App extends React.Component {
   state = {
+    busqueda: '',
     data: [],
     modalActualizar: false,
     modalInsertar: false,
@@ -126,7 +127,7 @@ class App extends React.Component {
   onChange = async e => {
     e.persist();
     await this.setState({ busqueda: e.target.value });
-    /*console.log(this.state.busqueda);
+   /* console.log(this.state.busqueda);
     console.log('lista filtrada',this.state.data.filter((elemento)=>{
       console.log("elemento",elemento);
       return JSON.stringify(elemento).toLowerCase().includes(this.state.busqueda.toLowerCase());
