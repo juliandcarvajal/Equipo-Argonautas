@@ -41,13 +41,14 @@ const data3 = [
 
 class GestorVentas extends React.Component {
   state = {
-    data: data,
+    data: [],
     data2: data2,
     data3: data3,
     modalActualizar: false,
     modalInsertar: false,
     modalInsertar2:false,
     productList:[],
+    productVentaList:[],
     modalSelecionarProductos:false,
     productoForm: {
       //Actuzalizar está parte con los campos que son
@@ -83,6 +84,27 @@ class GestorVentas extends React.Component {
       form: dato,
       modalActualizar: true,
     });
+  };
+
+  selecionarProducto = (dato) => {
+    var des=dato.title;
+    console.log("esto tiene el des:"+des);
+    this.setState({
+      productoForm: dato,
+      modalSelecionarProductos: false,
+      form: {
+
+        ...this.state.form,
+        ID_Producto: dato._id,
+        des_Producto: dato.title,
+        Precio_Unitario: dato.price,
+
+      },       
+    });
+
+    console.log("esto tiene el productoForm:"+this.state.productoForm.des_Producto);
+    console.log("esto tiene el dato:"+dato.des_Producto);
+    console.log("esto tiene el form:"+this.state.form.des_Producto);
   };
 
   agregarProducto = (dato) => {
@@ -180,12 +202,15 @@ class GestorVentas extends React.Component {
 
 
 
-  insertar= ()=>{
-
+  insertar= (input)=>{
+    console.log("insertar metodo")
+    console.log(input)
     var valorNuevo= {...this.state.form};
        
     var lista= this.state.data;
     lista.push(valorNuevo);
+    console.log("aqui va la lista")
+    console.log(lista)
 
     this.setState({ modalInsertar: false, data: lista });
 
@@ -204,7 +229,8 @@ class GestorVentas extends React.Component {
 
   handleChange = (e) => {
 
-  
+  console.log("verificar e")
+  console.log(e)
     this.setState({
       form: {
 
@@ -467,7 +493,7 @@ class GestorVentas extends React.Component {
                   <td>
                     <Button
                       color="primary"
-                      onClick={() => this.agregarProducto({ ...producto })}
+                      onClick={() => this.selecionarProducto({ ...producto })}
                     >
                       Agregar
                     </Button>{" "}
@@ -504,7 +530,7 @@ class GestorVentas extends React.Component {
                 name="ID_Producto"
                 type="text"
                 onChange={this.handleChange}
-                value={this.state.productoForm._id}
+                value={this.state.productoForm.title}
               />
             </FormGroup>
              
@@ -572,7 +598,7 @@ class GestorVentas extends React.Component {
           <ModalFooter>
             <Button
               color="primary"
-              onClick={() => this.insertar()}
+              onClick={() => this.insertar(this.state.form)}
             >
               Insertar
             </Button>
