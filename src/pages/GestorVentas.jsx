@@ -102,9 +102,7 @@ class GestorVentas extends React.Component {
       },       
     });
 
-    console.log("esto tiene el productoForm:"+this.state.productoForm.des_Producto);
-    console.log("esto tiene el dato:"+dato.des_Producto);
-    console.log("esto tiene el form:"+this.state.form.des_Producto);
+    
   };
 
   agregarProducto = (dato) => {
@@ -205,14 +203,42 @@ class GestorVentas extends React.Component {
   insertar= (input)=>{
     console.log("insertar metodo")
     console.log(input)
-    var valorNuevo= {...this.state.form};
+
+    var total =this.state.form.Cantidad*this.state.form.Precio_Unitario
+    console.log("total"+total)
+
+   var nuevoProducto= {
+      ID_Producto: this.state.form.ID_Producto,
+      des_Producto: this.state.form.des_Producto,
+      Cantidad: this.state.form.Cantidad,
+      Precio_Unitario:this.state.form.Precio_Unitario,
+      Precio_Total: total,
+    }
+
+    
+    console.log("form"+this.state.form)
+       
        
     var lista= this.state.data;
-    lista.push(valorNuevo);
-    console.log("aqui va la lista")
-    console.log(lista)
-
+    lista.push(nuevoProducto);
     this.setState({ modalInsertar: false, data: lista });
+    this.clearProductoForm(); 
+  }
+
+  clearProductoForm= ()=>{
+
+    this.setState({
+      productoForm: {
+        ...this.state.productoForm,
+        _id: "",
+        title: "",
+        price: "",
+        url: "",
+        categoria: "",
+        disponible: "",
+        description: "",  
+      },       
+    });
 
   }
 
